@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /**
- * main - Starting point
+ * main - Entry point
  * Return : 0 (Perfect)
  */
 
