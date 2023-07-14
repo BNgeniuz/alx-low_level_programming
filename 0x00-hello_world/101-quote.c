@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <unistd.h>
 /**
- * main - writing a c code to prints a line to the standard error
- * Return: 1 (Perfect)
+ * main - a C code that prints a line to the standard error
+ * return: 1 (Perfect)
  */
 int main(void)
 {
