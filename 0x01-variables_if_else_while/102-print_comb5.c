@@ -10,7 +10,7 @@ int main(void)
 {
 	int k, l;
 
-	for (k = 0; l <= 98; k++)
+	for (k = 0; k <= 98; k++)
 	{
 		for (l = k + 1; l <= 99; l++)
 		{
