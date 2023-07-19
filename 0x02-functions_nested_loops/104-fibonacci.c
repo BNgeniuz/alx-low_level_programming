@@ -15,7 +15,7 @@ int main(void)
 		y = z;
 		printf("%lu", z);
 
-		if (q < 97)
+		if (q < 98)
 			printf(",");
 		q++;
 	}
