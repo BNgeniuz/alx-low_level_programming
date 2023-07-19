@@ -1,31 +1,23 @@
 #include "main.h"
 /**
- * jack_bauer - every minute of the day
- * Return: (0) every second counts
+ * jack_bauer - print every minutes of his days
+ * Return: (0) every seconds count
+ *
  */
 void jack_bauer(void)
 {
-	int w, x, y, z;
+	int H, M;
 
-	for (w = 0; w <= 2; w++)
+	for (H = 0; H < 24; H++)
 	{
-		for (x = 0; x <= 9; x++)
+		for (M = 0; M < 60; M++)
 		{
-			if ((w <= 1 && x <= 9) || (w <= 2 && w <= 3))
-			{
-				for (y = 0; y <= 5; y++)
-				{
-					for (z = 0; z <= 9; z++)
-					{
-						_putchar(w + '0');
-						_putchar(x + '0');
-						_putchar(58);
-						_putchar(y + '0');
-						_putchar(z + '0');
-						_putchar('\n');
-					}
-				}
-			}
+			_putchar((H / 10) + '0');
+			_putchar((H % 10) + '0');
+			_putchar(':');
+			_putchar((M / 10) + '0');
+			_putchar((M % 10) + '0');
+			_putchar('\n');
 		}
 	}
 }
