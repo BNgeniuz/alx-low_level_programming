@@ -8,14 +8,14 @@ int main(void)
 	int q = 0;
 	unsigned long int x = 0, y = 1, z = 0;
 
-	while (q < 99)
+	while (q < 98)
 	{
 		z = x + y;
 		x = y;
 		y = z;
 		printf("%lu", z);
 
-		if (q < 90)
+		if (q < 91)
 			printf(", ");
 		q++;
 	}
