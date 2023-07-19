@@ -15,8 +15,8 @@ int main(void)
 		y = z;
 		printf("%lu", z);
 
-		if (q < 199)
-			printf(",");
+		if (q < 97)
+			printf(", ");
 		q++;
 	}
 	putchar('\n');
