@@ -6,13 +6,18 @@
  */
 int main(void)
 {
-	long int i, x = 1, y = 2, sum = 0, tsum = 0;
+	int i;
+	unsigned long int x, y, sum, tsum;
 
-	for (i = 0; i < 49; i++)
+	x = 1;
+	y = 2;
+	tsum = 0;
+
+	for (i = 1; i < 33; i++)
 	{
-		if ((i % 2 == 0) && (y <= 4000000))
+		if (x < 4000000 && (x % 2) == 0)
 		{
-			tsum = tsum + y;
+			tsum = tsum + x;
 		}
 		sum = x + y;
 		x = y;
