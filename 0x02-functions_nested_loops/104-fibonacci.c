@@ -16,7 +16,7 @@ int main(void)
 		printf("%lu", z);
 
 		if (q < 97)
-			printf(", ");
+			printf(",");
 		q++;
 	}
 	putchar('\n');
