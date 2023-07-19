@@ -6,11 +6,11 @@
  */
 int main(void)
 {
-	long int z, x = 1, y = 2, sum = 0, tsum = 0;
+	long int i, x = 1, y = 2, sum = 0, tsum = 0;
 
-	for (z = 0; z < 49; z++)
+	for (i = 0; i < 49; i++)
 	{
-		if ((z % 2 == 0) && (y <= 4000000))
+		if ((i % 2 == 0) && (y <= 4000000))
 		{
 			tsum = tsum + y;
 		}
