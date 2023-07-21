@@ -11,7 +11,7 @@ void print_number(int n)
 	if (n < 0)
 	{
 		_putchar('-');
-		tbt = tbt;
+		tbt = -tbt;
 	}
 	if ((tbt / 10) > 0)
 		print_number(tbt / 10);
