@@ -15,17 +15,17 @@ int main(void)
 	{
 	if (fb % 3 == 0 && fb % 5 != 0)
 	{
-	printf("Fizz");
+	printf(" Fizz");
 	}
 
 	else if (fb % 5 == 0 && fb % 3 != 0)
 	{
-	printf("Buzz");
+	printf(" Buzz");
 	}
 
 	else if (fb % 3 == 0 && fb % 5 == 0)
 	{
-	printf("FizzBuzz");
+	printf(" FizzBuzz");
 	}
 
 	else if (fb == 1)
@@ -34,9 +34,10 @@ int main(void)
 	}
 	else
 	{
-	printf("%d", fb);
+	printf(" %d", fb);
 	}
 	}
 	printf("\n");
+
 	return (0);
 }
