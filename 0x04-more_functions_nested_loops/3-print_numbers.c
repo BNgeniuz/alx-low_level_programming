@@ -2,16 +2,16 @@
 /**
  * print_numbers - from zero to nine
  *
- * Return: (1) for success, otherwise (0)
+ * Return: 0 (for success)
  */
 
-void print_numbers(void);
+void print_numbers(void)
 {
 	int k;
 
-	for (k = 48; k < 58; ++)
+	for  (k = 48; k < 58; k++)
 	{
 		_putchar(k);
-		_putchar('\n');
 	}
+	_putchar('\n');
 }
