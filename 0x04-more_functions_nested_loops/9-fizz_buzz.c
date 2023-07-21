@@ -5,7 +5,7 @@
  * Fizz is printed, for multiple of five
  * Buzz is printed, for both three and five, prints FizzBuzz
  *
- * Return 0 (JustFizzBuzz)
+ * Return: 0 (JustFizzBuzz)
  */
 int main(void)
 {
@@ -13,21 +13,29 @@ int main(void)
 
 	for (fb = 1; fb <= 100; fb++)
 	{
-		if ((fb % 3) == 0 && (fb % 5) == 0)
-			printf("FizzBuzz");
+	if (fb % 3 == 0 && fb % 5 != 0)
+	{
+	printf("Fizz");
+	}
 
-		else if ((fb % 3) == 0)
-			printf("Fizz");
+	else if (fb % 5 == 0 && fb % 3 != 0)
+	{
+	printf("Buzz");
+	}
 
-		else if ((fb % 5) == 0)
-			printf("Buzz");
+	else if (fb % 3 == 0 && fb % 5 == 0)
+	{
+	printf("FizzBuzz");
+	}
 
-		else
-			printf("%d", fb);
-
-		if (fb == 100)
-			continue;
-		printf(" ");
+	else if (fb == 1)
+	{
+	printf("%d", fb);
+	}
+	else
+	{
+	printf("%d", fb);
+	}
 	}
 	printf("\n");
 	return (0);
