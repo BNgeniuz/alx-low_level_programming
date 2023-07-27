@@ -14,43 +14,43 @@
 
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-	int ov = 0, x = 0, y = 0, gits = 0;
-	int xl1 = 0, xl2 = 0, tt = 0;
+	int i = 0, j = 0, k, l = 0;
+	int f, s, d = 0;
 
-	while (*(n1 + x) != '0')
-		x++;
-	while (*(n2 + y) != '0')
-		y++;
-
-	x--;
-	y--;
-	if (y >= size_r || x >= size_r)
+	while (n1[i] != '\0')
+		i++;
+	while (n2[j] != '\0')
+		j++;
+	if (i > j)
+		l = i;
+	else
+		l = j;
+	if (l + 1 > size_r)
 		return (0);
-	while (y >= 0 || x >= 0 || ov == 1)
+	r[l] = '\0';
+	for (k = l - 1 ; k >= 0 ; k--)
 	{
-		if (x < 0)
-			xl1 = 0;
+		i--;
+		j--;
+		if (i >= 0)
+			f = n1[i] - '0';
 		else
-			xl1 = *(n1 + x) - '0';
-		if (y < 0)
-			xl2 = 0;
+			f = 0;
+		if (j >= 0)
+			s = n2[j] - '0';
 		else
-			xl2 = *(n2 + y) - '0';
-		tt = xl1 + xl2 + ov;
-		if (tt >= 10)
-			ov = 1;
-		else
-			ov = 0;
-		if (gits >= (size_r - 1))
-			return (0);
-		*(r + gits) = (tt % 10) + '0';
-		gits++;
-		y--;
-		x--;
+			s = 0;
+		r[k] = (f + s + d) % 10 + '0';
+		d = (f + s + d) / 10;
 	}
-	if (gits == size_r)
-		return (0);
-	*(r + gits) = '0';
-	rev_string(r);
+	if (d == 1)
+	{
+		r[l + 1] = '\0';
+		if (l + 2 > size_r)
+			return (0);
+		while (l-- >= 0)
+			r[l + 1] = r[l];
+		r[0] = d + '0';
+	}
 	return (r);
 }
