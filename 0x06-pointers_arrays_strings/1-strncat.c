@@ -3,12 +3,12 @@
 #include <stdlib.h>
 
 /**
- * _strncat - string to be link two functions
+ * _strncat - function to link two strings
  * @dest: first string to be link
  * @src: second string to be link
- * @n: number of bytes to be link
+ * @n: bytes to be appended to dest
  *
- * Return: void
+ * Return: 0 (linking)
  */
 
 char *_strncat(char *dest, char *src, int n)
@@ -19,6 +19,6 @@ char *_strncat(char *dest, char *src, int n)
 	while (dest[x++])
 		y++;
 	for (x = 0; src[x] && x < n; x++)
-		dest[y] = src[x];
+		dest[y++] = src[x];
 	return (dest);
 }
