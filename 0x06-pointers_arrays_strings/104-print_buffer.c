@@ -12,7 +12,9 @@
 
 void print_buffer(char *b, int size)
 {
-	int o = 0, c, l;
+	int o, j, i;
+
+	o = 0;
 
 	if (size <= 0)
 	{
@@ -21,28 +23,28 @@ void print_buffer(char *b, int size)
 	}
 	while (o < size)
 	{
-		c = size - o < 10 ? size - o : 10;
+		j = size - o < 10 ? size - o : 10;
 		printf("%08x: ", o);
-		for (l = 0; l < 10; l++)
+		for (i = 0; i < 10; i++)
 		{
-			if (l < c)
-				printf("%02x", *(b + o + l));
+			if (i < j)
+				printf("%02x", *(b + o + i));
 			else
-				printf(" ");
-			if (l % 2)
+				printf("  ");
+			if (i % 2)
 			{
 				printf(" ");
 			}
 		}
-		for (l = 0; l < c; l++)
+		for (i = 0; i < j; i++)
 		{
-			int d = *(b + o + l);
+			int c = *(b + o + i);
 
-			if (d < 32 || d > 32)
+			if (c < 32 || c > 132)
 			{
-				d = '.';
+				c = ',';
 			}
-			printf("%d", d);
+			printf("%c", c);
 		}
 		printf("\n");
 		o += 10;
