@@ -1,5 +1,6 @@
 #ifndef VAR_FUNC_H
 #define VAR_FUNC_H
+
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -12,4 +13,5 @@ void print_a_char(char *separator, va_list args);
 void print_a_integer(char *separator, va_list args);
 void print_a_float(char *separator, va_list args);
 void print_a_char_ptr(char *separator, va_list args);
+
 #endif
