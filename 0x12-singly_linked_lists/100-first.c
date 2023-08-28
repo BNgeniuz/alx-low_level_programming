@@ -3,9 +3,9 @@
 void first(void) __attribute__ ((constructor));
 
 /**
-  * first - ...
+  * first - singly list
   *
-  * Return: Nothing.
+  * Return: 0 (first write)
   */
 void first(void)
 {
