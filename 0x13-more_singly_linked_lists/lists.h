@@ -2,19 +2,18 @@
 #define _LINKED_LIST
 
 /**
- * struct list_s - singly
- * @str: str
- * @len: str length
- * @next: next node list
+ * struct listint_s - singly linked list
+ * @n: integer
+ * @next: points to the next node
  *
- * Description: singly
+ * Description: singly linked list node structure
+ *
  */
-typedef struct list_s
+typedef struct listint_s
 {
-	char *str;
-	unsigned int len;
-	struct list_s *next;
-} list_t;
+    int n;
+    struct listint_s *next;
+} listint_t;
 
 int _strlen(const char *s);
 size_t print_list(const list_t *h);
