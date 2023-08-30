@@ -1,64 +1,87 @@
 #include "lists.h"
 #include <stdio.h>
-#include <stdlib.h>
 
+size_t looped_listint_len(const listint_t *head);
+size_t print_listint_safe(const listint_t *head);
 
 /**
- * _r - malloc for array ptr
- * @size: new linked list
- * @list: list ptr
- * @new: node to be added
+ * looped_listint_len - function to counts the number
+ * of unique nodes in a looped listint_t linked list.
+ * @head: ptr to first input
  *
  * Return: 0 (looped)
  */
-
-const listint_t **_r(const listint_t **list, size_t size, const listint_t *new)
+size_t looped_listint_len(const listint_t *head)
 {
-	const listint_t **newline;
-	size_t data;
+	const listint_t *slow, *fast;
+	size_t data = 1;
 
-	newline = malloc(size * sizeof(listint_t *));
-	if (newline == NULL)
+	if (head == NULL || head->next == NULL)
+		return (0);
+
+	slow = head->next;
+	fast = (head->next)->next;
+
+	while (fast)
 	{
-		free(list);
-		exit(98);
+		if (slow == fast)
+		{
+			slow = head;
+			while (slow != fast)
+			{
+				data++;
+				slow = slow->next;
+				fast = fast->next;
+			}
+
+			slow = slow->next;
+			while (slow != fast)
+			{
+				data++;
+				slow = slow->next;
+			}
+
+			return (data);
+		}
+
+		slow = slow->next;
+		fast = (fast->next)->next;
 	}
-	for (data = 0; data < size - 1; data++)
-		newline[data] = list[data];
-	newline[data] = new;
-	free(list);
-	return (newline);
+
+	return (0);
 }
 
-
 /**
- * print_listint_safe - safely prints all listint links
+ * print_listint_safe - prints singly linked list safely.
  * @head: ptr to first input
  *
- * Return: 0 (num of nodes)
+ * Return: 0 (nodes in the list)
  */
-
 size_t print_listint_safe(const listint_t *head)
 {
 	size_t data, idx = 0;
-	const listint_t **list = NULL;
 
-	while (head != NULL)
+	data = looped_listint_len(head);
+
+	if (data == 0)
 	{
-		for (data = 0; data < idx; data++)
+		for (; head != NULL; data++)
 		{
-			if (head == list[data])
-			{
-			printf("-> [%p] %d\n", (void *)head, head->n);
-			free(list);
-			return (idx);
-			}
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
 		}
-		idx++;
-		list = _r(list, idx, head);
-		printf("[%p] %d\n", (void *)head, head->n);
-		head = head->next;
 	}
-	free(list);
+
+	else
+	{
+		for (idx = 0; idx < data; idx++)
+		{
+			printf("[%p] %d\n", (void *)head, head->n);
+			head = head->next;
+		}
+
+		printf("-> [%p] %d\n", (void *)head, head->n);
+	}
+
 	return (data);
 }
