@@ -6,17 +6,19 @@
  *
  * @head: ptr first input
  *
- * Return 0 (calc. sum)
+ * Return: 0 (calc. sum)
  */
 
 int sum_listint(listint_t *head)
 {
 	int sum = 0;
 
-	while (head != NULL)
+	listint_t *dump = head;
+
+	while (dump)
 	{
-		sum += head->n;
-		head = head->next;
+		sum += dump->n;
+		dump = dump->next;
 	}
 
 	return (sum);
