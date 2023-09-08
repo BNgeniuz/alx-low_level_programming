@@ -2,47 +2,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char *create_buffer(char *file);
-void close_file(int word);
+#define MAXSIZE 1024
 
 /**
- * create_buffer - 1024 bytes allocation for a buffer
+ * __exit - 1024 bytes allocation for a buffer
  *
- * @file: input buffer for char storing
+ * @fdd: input for file description
+ * @error: exit or file file discriptor
+ * @s: copy from or copy to
  *
  * Return: 0 (malloc to buffer)
  */
-char *create_buffer(char *file)
+
+int __exit(int error, char *s, int fdd)
 {
-	char *bumper;
-
-	bumper = malloc(sizeof(char) * 1024);
-
-	if (bumper == NULL)
+	switch (error)
 	{
-		dprintf(STDERR_FILENO,
-			"Error: Can't write to %s\n", file);
-		exit(99);
-	}
-
-	return (bumper);
-}
-
-
-/**
- * close_file - file closes index
- * @word: input ptr closed.
- */
-void close_file(int word)
-{
-	int v;
-
-	v = close(word);
-
-	if (v == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close word %d\n", word);
-		exit(100);
+		case 97:
+			dprintf(STDERR_FILENO, "Usage: cp file fro & to\n");
+			exit(error);
+		case 98:
+			dprintf(STDERR_FILENO, "Error: can't read from file %s\n", s);
+			exit(error);
+		case 99:
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", s);
+			exit(error);
+		case 100:
+			dprintf(STDERR_FILENO, "Error: Can't close fdd %d\n", fdd);
+			exit(error);
+		default:
+			return (0);
 	}
 }
 
@@ -62,46 +51,45 @@ void close_file(int word)
  */
 int main(int argc, char *argv[])
 {
-	int from, to, rd, word;
-	char *bumper;
+	int file_from, file_to;
+	int r_read, w_write;
+	int close_in, close_out;
+	char buffer[MAXSIZE];
 
+
+	/*if arguments are not 3*/
 	if (argc != 3)
+		__exit(97, NULL, 0);
+
+	/*sets file descriptor for copy from file*/
+	file_from = open(argv[1], O_RDONLY);
+	if (file_from == -1)
+		__exit(98, argv[1], 0);
+
+	/*sets file descriptor for copy to file*/
+	file_to = open(argv[2], O_CREAT | O_TRUNC | O_WRONLY, 0664);
+	if (file_to == -1)
+		__exit(99, argv[2], 0);
+
+	/*reads file_in as long as its not NULL*/
+	while ((r_read = read(file_from, buffer, MAXSIZE)) != 0)
 	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
+		if (r_read == -1)
+			__exit(98, argv[1], 0);
+
+		/*copy and write contents to file_to*/
+		w_write = write(file_to, buffer, r_read);
+		if (w_write == -1)
+			__exit(99, argv[2], 0);
 	}
 
-	bumper = create_buffer(argv[2]);
-	from = open(argv[1], O_RDONLY);
-	rd = read(from, bumper, 1024);
-	to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	close_in = close(file_from); /*close file_from*/
+	if (close_in == -1)
+		__exit(100, NULL, file_from);
 
-	do {
-		if (from == -1 || rd == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't read from file %s\n", argv[1]);
-			free(bumper);
-			exit(98);
-		}
-
-		word = write(to, bumper, rd);
-		if (to == -1 || word == -1)
-		{
-			dprintf(STDERR_FILENO,
-				"Error: Can't write to %s\n", argv[2]);
-			free(bumper);
-			exit(99);
-		}
-
-		rd = read(from, bumper, 1024);
-		to = open(argv[2], O_WRONLY | O_APPEND);
-
-	} while (rd > 0);
-
-	free(bumper);
-	close_file(from);
-	close_file(to);
+	close_out = close(file_to); /*close file_to*/
+	if (close_out == -1)
+		__exit(100, NULL, file_to);
 
 	return (0);
 }
