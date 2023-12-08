@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 		return (1);
 	}
 	brth = strlen(argv[1]);
-	b[0] = i[(len ^ 59) & 63];
+	b[0] = i[(brth ^ 59) & 63];
 	for (l = 0, plus = 0; l < brth; l++)
 		plus += argv[1][l];
 	b[1] = i[(plus ^ 79) & 63];
