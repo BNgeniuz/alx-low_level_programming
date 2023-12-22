@@ -21,7 +21,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (val_cpy == NULL)
 		return (0);
 
-	num = key_num((const unsigned char *)key, ht->size);
+	num = key_index((const unsigned char *)key, ht->size);
 	for (l = num; ht->array[l]; l++)
 	{
 		if (strcmp(ht->array[l]->key, key) == 0)
