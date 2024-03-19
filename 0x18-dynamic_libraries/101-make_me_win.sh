@@ -1,3 +1,3 @@
 #!/bin/bash
-wget -P .. https://raw.githubusercontent.com/BNgeniuz/alx-low_level_programming/master/0x18-dynamic_libraries/libshark.so
-export LD_PRELOAD="$PWD/../libshark.so"
+cp /lib/x86_64-linux-gnu/libc.so.6 /tmp
+export LD_PRELOAD=/tmp/libc.so.6"
